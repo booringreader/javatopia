@@ -3,9 +3,6 @@ import java.lang.Math;
 import java.util.Scanner;
 public class numero{
     public static void main(String args[]){
-        // generate a random number
-        int randInt = (int)Math.random();
-
         // input variables
         Scanner sc = new Scanner(System.in);
         int input;
@@ -14,8 +11,15 @@ public class numero{
         // graphic for gaming setup
         //
         
+        // defining range for the randInt
+        int max=50, min=1; 
+        int range = (max-min) + 1; // 50 numbers possible
+
+        // generate random number
+        int randInt = (int)(Math.random() * max);
+
         // test
-        System.out.println("randInt: " + randInt)
+        System.out.println("randInt: " + randInt);
         // game logic
         while(k!=0){
             System.out.print("guess the number: ");
