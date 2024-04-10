@@ -1,54 +1,62 @@
+
 // reversing a string using stack implementation with arraylists 
-import java.util.Arraylist;
-public class strrev{
-    // we won't need to check for stack full, since arraylist is allocated dynamically
-    public class stack{
-        static Arraylist <Character> st = new Arraylist<>(); // every first order member of a static class must be static
+import java.util.ArrayList;
+import java.util.Scanner;
 
-        public static boolean isempty(){ // checks whether the stack is empty
-            // if empty returned 1, else 0;
-            return st.size()==0; // size() method for arraylist; .length for arrays 
+public class strrev {
+    static class stack{
+        // implement stack in ArrayList
+        // push(), pop(), peek(), isEmpty() operations
+
+        static ArrayList<Character> list = new ArrayList<>();
+
+        // returns 1 if the size of stack object (arraylist on the floor) is empty
+        public static boolean isEmpty(){
+            return list.size() == 0;
         }
 
-        public static void push(char str){
-            st.add(str); 
+        // push character datatype (since we'll deal with strings) into the stack (arraylist under the hood)
+        public static void push(char data){
+            list.add(data);
         }
 
+        // remove character datatype from the end of the arraylist (if not empty)
         public static char pop(){
-            if(isempty()){
-                System.out.println("empty stack");
+            if(isEmpty()){
+                System.out.println("stack empty");
                 return '\'';
             }
-            // int output = st.get(st.size()-1);
-            // st.remove(st.size()-1);
-            // return output; 
-            return st.remove(st.size()-1);
+            char output = list.get(list.size()-1);
+            list.remove(list.size()-1);
+            return output;
         }
 
+        // retrieve charater datatype from the arraylist (if not empty)
         public static char peek(){
-            if(isempty()){
-                 System.out.println("empty stack");
-                 return '\''; // returning ' means the stack is empty
+            if(isEmpty()){
+                System.out.println("stack empty");
+                return '\'';
             }
-            char output = st.get(st.size()-1);
-            return output;
+            return list.get(list.size()-1);
         }
     }
 
-    // stack implementation ends
-    
-    //string reversal function
-    public static void reverse(String inputstr, stack st){
-        for(int i=0; i<inputstr.length(); i++){
-          st.add(inputstr.toChar(i));
-        } 
-        while(!st.isempty()){
+    public static void reverse(String str, stack st) { // takes string and stack object as argument
+        char c;
+        for(int i=0; i<str.length(); i++){
+            c = str.charAt(i);
+            st.push(c);
+        }
+        while(!st.isEmpty()){
             System.out.print(st.pop() + " ");
         }
     }
-    public static void main(String args[]){
-        String inputStr = "COMPLIMENTARY HELLO WORLD STRING";
+
+    public static void main(String args[]) {
         stack st = new stack();
+        String inputStr;
+        Scanner sc = new Scanner(System.in);
+        inputStr = sc.nextLine();
         reverse(inputStr, st);
-    } 
+    }
 }
