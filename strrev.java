@@ -42,14 +42,16 @@ public class strrev {
     }
 
     public static void reverse(String str, stack st) { // takes string and stack object as argument
-        char c;
+        char c; 
+        StringBuilder out = new StringBuilder(); // initialized with a new StringBuilder
         for(int i=0; i<str.length(); i++){
             c = str.charAt(i);
             st.push(c);
         }
         while(!st.isEmpty()){
-            System.out.print(st.pop() + " ");
+            out.append(st.pop());
         }
+        System.out.println(out.toString()); // toString() converts StringBuilder to string
     }
 
     public static void main(String args[]) {
